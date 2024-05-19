@@ -1,8 +1,8 @@
 import { createColumnHelper } from "@tanstack/table-core";
 
-import { DataType } from "@/types";
+import { Person } from "@/shared/types/types";
 
-const columnHelper = createColumnHelper<DataType>();
+const columnHelper = createColumnHelper<Person>();
 
 export const columns = [
   columnHelper.accessor("id", {
