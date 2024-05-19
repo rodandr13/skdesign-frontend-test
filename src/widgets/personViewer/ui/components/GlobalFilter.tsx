@@ -1,11 +1,14 @@
 import { useState } from "react";
 
+import { useAppDispatch } from "@/shared/lib/hooks/redux";
+import { setGlobalFilter } from "@/widgets/personViewer/model/globalFilterSlice";
+
 export const GlobalFilter = () => {
   const [filterValue, setFilterValue] = useState("");
-  const [globalFilter, setGlobalFilter] = useState("");
+  const dispatch = useAppDispatch();
 
   const handleCLickFilter = () => {
-    setGlobalFilter(String(filterValue));
+    dispatch(setGlobalFilter(filterValue));
   };
 
   return (

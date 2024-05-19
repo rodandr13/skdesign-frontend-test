@@ -25,7 +25,8 @@ export const Table = () => {
     pageIndex: 0,
     pageSize: 10,
   });
-  const [globalFilter, setGlobalFilter] = useState("");
+  const globalFilter = useAppSelector((state) => state.globalFilter);
+  // const [globalFilter, setGlobalFilter] = useState("");
 
   const table = useReactTable({
     initialState: {
@@ -44,7 +45,7 @@ export const Table = () => {
     },
     columns,
     data: persons,
-    onGlobalFilterChange: setGlobalFilter,
+    // onGlobalFilterChange: setGlobalFilter,
     globalFilterFn: "includesString",
     getFilteredRowModel: getFilteredRowModel(),
     getCoreRowModel: getCoreRowModel(),

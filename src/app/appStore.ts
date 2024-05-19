@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import personReducer from "../entities/person/model/personSlice";
+import personReducer from "@/entities/person/model/personSlice";
+import globalFilterReducer from "@/widgets/personViewer/model/globalFilterSlice";
 
 export const appStore = configureStore({
   reducer: {
     person: personReducer,
+    globalFilter: globalFilterReducer,
   },
 });
 
