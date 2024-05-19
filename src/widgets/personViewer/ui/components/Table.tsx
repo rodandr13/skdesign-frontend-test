@@ -11,6 +11,8 @@ import {
 } from "@tanstack/react-table";
 
 import { useAppSelector } from "@/shared/lib/hooks/redux";
+import { Spinner } from "@/shared/ui";
+import { GlobalFilter } from "@/widgets/personViewer/ui/components/GlobalFilter";
 
 import { TableBody } from "./TableBody";
 import { TableHead } from "./TableHead";
@@ -26,7 +28,6 @@ export const Table = () => {
     pageSize: 10,
   });
   const globalFilter = useAppSelector((state) => state.globalFilter);
-  // const [globalFilter, setGlobalFilter] = useState("");
 
   const table = useReactTable({
     initialState: {
@@ -45,7 +46,6 @@ export const Table = () => {
     },
     columns,
     data: persons,
-    // onGlobalFilterChange: setGlobalFilter,
     globalFilterFn: "includesString",
     getFilteredRowModel: getFilteredRowModel(),
     getCoreRowModel: getCoreRowModel(),
@@ -55,15 +55,22 @@ export const Table = () => {
     getPaginationRowModel: getPaginationRowModel(),
   });
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Spinner />;
   if (error) return <div>Error: {error}</div>;
   return (
-    <>
-      <table>
-        <TableHead table={table} />
-        <TableBody table={table} />
-      </table>
-      <TablePagination table={table} />
-    </>
+    <section>
+      {persons.length > 0 ? (
+        <>
+          <GlobalFilter />
+          <table>
+            <TableHead table={table} />
+            <TableBody table={table} />
+          </table>
+          <TablePagination table={table} />
+        </>
+      ) : (
+        <div>Нет данных для отображения</div>
+      )}
+    </section>
   );
 };
