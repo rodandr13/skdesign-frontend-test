@@ -18,7 +18,11 @@ const initialState: PersonState = {
 const personSlice = createSlice({
   name: "person",
   initialState,
-  reducers: {},
+  reducers: {
+    addPerson: (state, action: PayloadAction<Person>) => {
+      state.persons.unshift(action.payload);
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchPersons.pending, (state) => {
@@ -39,4 +43,5 @@ const personSlice = createSlice({
   },
 });
 
+export const { addPerson } = personSlice.actions;
 export default personSlice.reducer;
