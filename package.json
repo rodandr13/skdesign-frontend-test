@@ -9,12 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tanstack/match-sorter-utils": "^8.15.1",
+    "@tanstack/react-table": "^8.17.3",
+    "next": "14.2.3",
     "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.3"
+    "react-dom": "^18"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -29,6 +30,7 @@
     "sass": "^1.77.1",
     "stylelint": "^16.5.0",
     "stylelint-config-standard-scss": "^13.1.0",
-    "stylelint-scss": "^6.3.0"
+    "stylelint-scss": "^6.3.0",
+    "typescript": "^5"
   }
 }
