@@ -8,7 +8,6 @@ interface Props {
 }
 
 export const TableHead = ({ table }: Props) => {
-  console.log("TableHead");
   return (
     <thead>
       {table.getHeaderGroups().map((headerGroup) => (

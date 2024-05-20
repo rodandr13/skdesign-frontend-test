@@ -24,7 +24,6 @@ import { columns } from "../../model/columns";
 import styles from "../styles.module.scss";
 
 export const Table = () => {
-  console.log("Table");
   const persons = useAppSelector(selectPersons);
   const loading = useAppSelector((state) => state.person.loading);
   const error = useAppSelector((state) => state.person.error);

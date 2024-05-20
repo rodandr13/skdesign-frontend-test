@@ -1,67 +1,85 @@
 import React from "react";
-import { ChangeEvent, FormEvent } from "react";
 
-import { PersonFormData } from "@/shared/types/schema";
+import { Controller } from "react-hook-form";
+
 import { Button } from "@/shared/ui/button/Button";
 
 import { PersonFormField } from "./PersonFormField";
 import styles from "../styles.module.scss";
 
 interface Props {
-  formData: PersonFormData;
-  errors: string[] | null;
-  onInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onPhoneChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onSubmit: (e: FormEvent) => void;
+  control: any;
+  errors: any;
+  isValid: boolean;
+  handlePhoneChange: (value: string) => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
 export const PersonForm = ({
-  formData,
+  control,
   errors,
-  onInputChange,
-  onPhoneChange,
-  onSubmit,
+  isValid,
+  handlePhoneChange,
+  handleSubmit,
 }: Props) => {
   return (
-    <form onSubmit={onSubmit} className={styles.form}>
-      <PersonFormField
-        label="firstName"
-        type="text"
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <Controller
         name="firstName"
-        value={formData.firstName}
-        onChange={onInputChange}
+        control={control}
+        render={({ field }) => (
+          <PersonFormField
+            label="firstName"
+            type="text"
+            {...field}
+            error={errors.firstName?.message}
+          />
+        )}
       />
-      <PersonFormField
-        label="lastName"
-        type="text"
+
+      <Controller
         name="lastName"
-        value={formData.lastName}
-        onChange={onInputChange}
+        control={control}
+        render={({ field }) => (
+          <PersonFormField
+            label="lastName"
+            type="text"
+            {...field}
+            error={errors.lastName?.message}
+          />
+        )}
       />
-      <PersonFormField
-        label="email"
-        type="email"
+
+      <Controller
         name="email"
-        value={formData.email}
-        onChange={onInputChange}
+        control={control}
+        render={({ field }) => (
+          <PersonFormField
+            label="email"
+            type="email"
+            {...field}
+            error={errors.email?.message}
+          />
+        )}
       />
-      <PersonFormField
-        label="phone"
-        type="text"
+
+      <Controller
         name="phone"
-        value={formData.phone}
-        onChange={onPhoneChange}
-        placeholder="(xxx)xxx-xx-xx"
-        maxLength={15}
+        control={control}
+        render={({ field }) => (
+          <PersonFormField
+            label="phone"
+            type="text"
+            {...field}
+            onChange={(e) => handlePhoneChange(e.target.value)}
+            placeholder="(xxx)xxx-xx-xx"
+            maxLength={15}
+            error={errors.phone?.message}
+          />
+        )}
       />
-      {errors && (
-        <div style={{ color: "red" }}>
-          {errors.map((error, index) => (
-            <div key={index}>{error}</div>
-          ))}
-        </div>
-      )}
-      <Button type="submit" title="Добавить в таблицу" />
+
+      <Button type="submit" title="Добавить в таблицу" disabled={!isValid} />
     </form>
   );
 };

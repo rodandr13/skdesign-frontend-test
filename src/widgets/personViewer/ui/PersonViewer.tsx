@@ -8,8 +8,6 @@ import { Table } from "./components/Table";
 import styles from "./styles.module.scss";
 
 export const PersonViewer = () => {
-  console.log("PersonViewer");
-
   return (
     <section className={styles.personView}>
       <div className={styles.personView__buttonsDataGroup}>

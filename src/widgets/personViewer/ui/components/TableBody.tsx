@@ -9,8 +9,6 @@ interface Props {
 }
 
 export const TableBody = ({ table, onRowClick }: Props) => {
-  console.log("TableBody");
-
   return (
     <tbody>
       {table.getRowModel().rows.map((row) => (

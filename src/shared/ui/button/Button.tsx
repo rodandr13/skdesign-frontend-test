@@ -6,11 +6,22 @@ interface Props {
   onClick?: () => void;
   title: string;
   type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }
 
-export const Button = ({ onClick, title, type = "button" }: Props) => {
+export const Button = ({
+  onClick,
+  title,
+  type = "button",
+  disabled = false,
+}: Props) => {
   return (
-    <button type={type} onClick={onClick} className={styles.button}>
+    <button
+      type={type}
+      onClick={onClick}
+      className={styles.button}
+      disabled={disabled}
+    >
       {title}
     </button>
   );

@@ -11,7 +11,6 @@ interface Props {
 }
 
 export const TablePagination = ({ table }: Props) => {
-  console.log("Pagination");
   return (
     <section className={styles.pagination}>
       <div className={styles.pagination__navigation}>

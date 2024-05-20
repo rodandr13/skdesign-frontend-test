@@ -1,22 +1,23 @@
+import React from "react";
+
 import { useAppSelector } from "@/shared/lib/hooks/redux";
 import { Button } from "@/shared/ui/button/Button";
 
 import { PersonForm } from "./components/PersonForm";
 import styles from "./styles.module.scss";
-import { useAddPersonForm } from "../hooks/useAddPersonForm";
+import { useAddPersonForm } from "../lib/useAddPersonForm";
 
 export const AddPerson = () => {
-  console.log("AddPerson");
   const { loading, persons } = useAppSelector((state) => state.person);
   const isDataLoaded = !loading && persons.length > 0;
   const {
     showForm,
     setShowForm,
-    formData,
-    errors,
-    handleInputChange,
-    handlePhoneChange,
+    control,
     handleSubmit,
+    errors,
+    isValid,
+    handlePhoneChange,
   } = useAddPersonForm();
 
   if (!isDataLoaded) {
@@ -31,11 +32,11 @@ export const AddPerson = () => {
       />
       {showForm && (
         <PersonForm
-          formData={formData}
+          control={control}
           errors={errors}
-          onInputChange={handleInputChange}
-          onPhoneChange={handlePhoneChange}
-          onSubmit={handleSubmit}
+          isValid={isValid}
+          handlePhoneChange={handlePhoneChange}
+          handleSubmit={handleSubmit}
         />
       )}
     </div>
