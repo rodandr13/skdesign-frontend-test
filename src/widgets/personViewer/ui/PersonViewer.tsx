@@ -2,8 +2,8 @@
 
 import { AddPerson } from "@/features/addPerson";
 import { LoadPersonsData } from "@/features/loadPersonsData";
-import { BIG_DATA_COUNT, SMALL_DATA_COUNT } from "@/shared/lib/constans";
 import { SelectedPersonInfo } from "@/features/selectedPersonInfo/SelectedPersonInfo";
+import { BIG_DATA_COUNT, SMALL_DATA_COUNT } from "@/shared/lib/constans";
 
 import { Table } from "./components/Table";
 

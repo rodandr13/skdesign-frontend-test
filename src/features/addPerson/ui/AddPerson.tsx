@@ -1,9 +1,12 @@
-import React from "react";
+import { useAppSelector } from "@/shared/lib/hooks/redux";
 
 import { PersonForm } from "./components/PersonForm";
 import { useAddPersonForm } from "../hooks/useAddPersonForm";
 
 export const AddPerson = () => {
+  console.log("AddPerson");
+  const { loading, persons } = useAppSelector((state) => state.person);
+  const isDataLoaded = !loading && persons.length > 0;
   const {
     showForm,
     setShowForm,
@@ -13,6 +16,10 @@ export const AddPerson = () => {
     handlePhoneChange,
     handleSubmit,
   } = useAddPersonForm();
+
+  if (!isDataLoaded) {
+    return null;
+  }
 
   return (
     <div>

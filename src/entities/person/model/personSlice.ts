@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { fetchPersons } from "@/entities/person";
-import { Person } from "@/shared/types/types";
+import { Person } from "@/shared/types/schema";
 
 interface PersonState {
   persons: Person[];

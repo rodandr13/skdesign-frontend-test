@@ -1,7 +1,7 @@
 import { flexRender } from "@tanstack/react-table";
 import { Table } from "@tanstack/react-table";
 
-import { Person } from "@/shared/types/types";
+import { Person } from "@/shared/types/schema";
 
 interface Props {
   table: Table<Person>;

@@ -1,7 +1,7 @@
 import { Table } from "@tanstack/react-table";
 
 import { ROWS_PER_PAGE } from "@/shared/lib/constans";
-import { Person } from "@/shared/types/types";
+import { Person } from "@/shared/types/schema";
 
 interface Props {
   table: Table<Person>;

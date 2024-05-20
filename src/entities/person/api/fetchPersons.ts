@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { Person } from "@/shared/types/types";
+import { Person } from "@/shared/types/schema";
 
 export const fetchPersons = createAsyncThunk<Person[], number>(
   "person/fetchPersons",

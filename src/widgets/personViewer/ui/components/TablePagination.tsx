@@ -1,6 +1,6 @@
 import { Table } from "@tanstack/react-table";
 
-import { Person } from "@/shared/types/types";
+import { Person } from "@/shared/types/schema";
 
 import { PaginationToPageNumber } from "./PaginationToPageNumber";
 import { RowsPerPage } from "./RowsPerPage";

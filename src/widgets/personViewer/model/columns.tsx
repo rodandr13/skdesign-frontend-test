@@ -1,6 +1,6 @@
 import { createColumnHelper } from "@tanstack/table-core";
 
-import { Person } from "@/shared/types/types";
+import { Person } from "@/shared/types/schema";
 
 const columnHelper = createColumnHelper<Person>();
 

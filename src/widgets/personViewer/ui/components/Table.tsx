@@ -13,7 +13,7 @@ import {
 import { selectPerson } from "@/entities/person/model/personSlice";
 import { selectPersons } from "@/entities/person/model/selectors";
 import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/redux";
-import { Person } from "@/shared/types/types";
+import { Person } from "@/shared/types/schema";
 import { Spinner } from "@/shared/ui";
 import { GlobalFilter } from "@/widgets/personViewer/ui/components/GlobalFilter";
 

@@ -1,11 +1,12 @@
 import React from "react";
 import { ChangeEvent, FormEvent } from "react";
 
+import { PersonFormData } from "@/shared/types/schema";
+
 import { PersonFormField } from "./PersonFormField";
-import { Person } from "../../model/schema";
 
 interface Props {
-  formData: Person;
+  formData: PersonFormData;
   errors: string[] | null;
   onInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onPhoneChange: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -21,13 +22,6 @@ export const PersonForm = ({
 }: Props) => {
   return (
     <form onSubmit={onSubmit}>
-      <PersonFormField
-        label="id"
-        type="number"
-        name="id"
-        value={formData.id}
-        onChange={onInputChange}
-      />
       <PersonFormField
         label="firstName"
         type="text"

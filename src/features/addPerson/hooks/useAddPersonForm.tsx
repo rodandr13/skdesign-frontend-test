@@ -3,17 +3,18 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { z } from "zod";
 
 import { addPerson } from "@/entities/person";
-import { useAppDispatch } from "@/shared/lib/hooks/redux";
+import { selectPersons } from "@/entities/person/model/selectors";
+import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/redux";
+import { Person, PersonFormData, personSchema } from "@/shared/types/schema";
 
 import { formatPhoneNumber } from "../lib/formatPhoneNumber";
-import { Person, personSchema } from "../model/schema";
 
 export const useAddPersonForm = () => {
   const dispatch = useAppDispatch();
+  const persons = useAppSelector(selectPersons);
   const [showForm, setShowForm] = useState(false);
   const [errors, setErrors] = useState<string[] | null>(null);
-  const [formData, setFormData] = useState<Person>({
-    id: 0,
+  const [formData, setFormData] = useState<PersonFormData>({
     firstName: "",
     lastName: "",
     email: "",
@@ -29,8 +30,7 @@ export const useAddPersonForm = () => {
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    const formattedValue = name === "id" ? parseInt(value, 10) : value;
-    setFormData({ ...formData, [name]: formattedValue });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handlePhoneChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -41,10 +41,11 @@ export const useAddPersonForm = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     try {
+      const id = Math.max(0, ...persons.map((p) => p.id)) + 1;
+      const newPerson: Person = { id, ...formData };
       personSchema.parse(formData);
-      dispatch(addPerson(formData));
+      dispatch(addPerson(newPerson));
       setFormData({
-        id: 0,
         firstName: "",
         lastName: "",
         email: "",

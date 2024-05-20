@@ -8,7 +8,6 @@ export const addressSchema = z.object({
 });
 
 export const personSchema = z.object({
-  id: z.number(),
   firstName: z.string(),
   lastName: z.string(),
   email: z.string().email(),
@@ -17,5 +16,5 @@ export const personSchema = z.object({
   description: z.string(),
 });
 
-export type Address = z.infer<typeof addressSchema>;
-export type Person = z.infer<typeof personSchema>;
+export type Person = z.infer<typeof personSchema> & { id: number };
+export type PersonFormData = Omit<Person, "id">;
