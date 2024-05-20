@@ -18,7 +18,12 @@ export const useAddPersonForm = () => {
     lastName: "",
     email: "",
     phone: "",
-    address: [],
+    address: {
+      streetAddress: "",
+      city: "",
+      zip: "",
+      state: "",
+    },
     description: "",
   });
 
@@ -44,7 +49,12 @@ export const useAddPersonForm = () => {
         lastName: "",
         email: "",
         phone: "",
-        address: [],
+        address: {
+          streetAddress: "",
+          city: "",
+          zip: "",
+          state: "",
+        },
         description: "",
       });
       setShowForm(false);

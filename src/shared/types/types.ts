@@ -11,6 +11,6 @@ export type Person = {
   lastName: string;
   email: string;
   phone: string;
-  address: Address[];
+  address: Address;
   description: string;
 };

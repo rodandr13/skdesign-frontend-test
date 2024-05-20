@@ -7,12 +7,14 @@ interface PersonState {
   persons: Person[];
   loading: boolean;
   error: string | null;
+  selectedPerson: Person | null;
 }
 
 const initialState: PersonState = {
   persons: [],
   loading: false,
   error: null,
+  selectedPerson: null,
 };
 
 const personSlice = createSlice({
@@ -21,6 +23,9 @@ const personSlice = createSlice({
   reducers: {
     addPerson: (state, action: PayloadAction<Person>) => {
       state.persons.unshift(action.payload);
+    },
+    selectPerson: (state, action: PayloadAction<Person>) => {
+      state.selectedPerson = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -43,5 +48,5 @@ const personSlice = createSlice({
   },
 });
 
-export const { addPerson } = personSlice.actions;
+export const { addPerson, selectPerson } = personSlice.actions;
 export default personSlice.reducer;

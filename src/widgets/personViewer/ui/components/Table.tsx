@@ -10,7 +10,10 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-import { useAppSelector } from "@/shared/lib/hooks/redux";
+import { selectPerson } from "@/entities/person/model/personSlice";
+import { selectPersons } from "@/entities/person/model/selectors";
+import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/redux";
+import { Person } from "@/shared/types/types";
 import { Spinner } from "@/shared/ui";
 import { GlobalFilter } from "@/widgets/personViewer/ui/components/GlobalFilter";
 
@@ -21,13 +24,16 @@ import { columns } from "../../model/columns";
 
 export const Table = () => {
   console.log("Table");
-  const { persons, loading, error } = useAppSelector((state) => state.person);
+  const persons = useAppSelector(selectPersons);
+  const loading = useAppSelector((state) => state.person.loading);
+  const error = useAppSelector((state) => state.person.error);
   const [sorting, setSorting] = useState<SortingState>([]);
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 10,
   });
   const globalFilter = useAppSelector((state) => state.globalFilter);
+  const dispatch = useAppDispatch();
 
   const table = useReactTable({
     initialState: {
@@ -55,6 +61,10 @@ export const Table = () => {
     getPaginationRowModel: getPaginationRowModel(),
   });
 
+  const handleRowClick = (person: Person) => {
+    dispatch(selectPerson(person));
+  };
+
   if (loading) return <Spinner />;
   if (error) return <div>Error: {error}</div>;
   return (
@@ -64,7 +74,7 @@ export const Table = () => {
           <GlobalFilter />
           <table>
             <TableHead table={table} />
-            <TableBody table={table} />
+            <TableBody table={table} onRowClick={handleRowClick} />
           </table>
           <TablePagination table={table} />
         </>
