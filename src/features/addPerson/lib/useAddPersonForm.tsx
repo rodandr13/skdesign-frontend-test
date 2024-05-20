@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { addPerson } from "@/entities/person";
@@ -17,12 +17,12 @@ export const useAddPersonForm = () => {
   const [showForm, setShowForm] = useState(false);
 
   const {
-    control,
     handleSubmit,
     setValue,
     formState: { errors, isValid },
     reset,
     trigger,
+    register,
   } = useForm<PersonFormData>({
     resolver: zodResolver(personSchema),
     mode: "onChange",
@@ -51,7 +51,7 @@ export const useAddPersonForm = () => {
     trigger("phone");
   };
 
-  const onSubmit = (data: PersonFormData) => {
+  const onSubmit: SubmitHandler<PersonFormData> = (data: PersonFormData) => {
     try {
       const id = Math.max(0, ...persons.map((p) => p.id)) + 1;
       const newPerson: Person = { id, ...data };
@@ -71,7 +71,7 @@ export const useAddPersonForm = () => {
   return {
     showForm,
     setShowForm,
-    control,
+    register,
     errors,
     isValid,
     handleInputChange,

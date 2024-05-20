@@ -1,22 +1,23 @@
-import React from "react";
+import { ChangeEvent, FormEvent } from "react";
 
-import { Controller } from "react-hook-form";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
 
+import { PersonFormData } from "@/shared/types/schema";
 import { Button } from "@/shared/ui/button/Button";
 
 import { PersonFormField } from "./PersonFormField";
 import styles from "../styles.module.scss";
 
 interface Props {
-  control: any;
-  errors: any;
+  register: UseFormRegister<PersonFormData>;
+  errors: FieldErrors<PersonFormData>;
   isValid: boolean;
   handlePhoneChange: (value: string) => void;
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
 }
 
 export const PersonForm = ({
-  control,
+  register,
   errors,
   isValid,
   handlePhoneChange,
@@ -24,59 +25,37 @@ export const PersonForm = ({
 }: Props) => {
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <Controller
-        name="firstName"
-        control={control}
-        render={({ field }) => (
-          <PersonFormField
-            label="firstName"
-            type="text"
-            {...field}
-            error={errors.firstName?.message}
-          />
-        )}
+      <PersonFormField
+        label="firstName"
+        type="text"
+        {...register("firstName")}
+        error={errors.firstName?.message}
       />
 
-      <Controller
-        name="lastName"
-        control={control}
-        render={({ field }) => (
-          <PersonFormField
-            label="lastName"
-            type="text"
-            {...field}
-            error={errors.lastName?.message}
-          />
-        )}
+      <PersonFormField
+        label="lastName"
+        type="text"
+        {...register("lastName")}
+        error={errors.lastName?.message}
       />
 
-      <Controller
-        name="email"
-        control={control}
-        render={({ field }) => (
-          <PersonFormField
-            label="email"
-            type="email"
-            {...field}
-            error={errors.email?.message}
-          />
-        )}
+      <PersonFormField
+        label="email"
+        type="email"
+        {...register("email")}
+        error={errors.email?.message}
       />
 
-      <Controller
-        name="phone"
-        control={control}
-        render={({ field }) => (
-          <PersonFormField
-            label="phone"
-            type="text"
-            {...field}
-            onChange={(e) => handlePhoneChange(e.target.value)}
-            placeholder="(xxx)xxx-xx-xx"
-            maxLength={15}
-            error={errors.phone?.message}
-          />
-        )}
+      <PersonFormField
+        label="phone"
+        type="text"
+        {...register("phone", {
+          onChange: (e: ChangeEvent<HTMLInputElement>) =>
+            handlePhoneChange(e.target.value),
+        })}
+        placeholder="(xxx)xxx-xx-xx"
+        maxLength={15}
+        error={errors.phone?.message}
       />
 
       <Button type="submit" title="Добавить в таблицу" disabled={!isValid} />

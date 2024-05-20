@@ -13,7 +13,7 @@ export const AddPerson = () => {
   const {
     showForm,
     setShowForm,
-    control,
+    register,
     handleSubmit,
     errors,
     isValid,
@@ -32,7 +32,7 @@ export const AddPerson = () => {
       />
       {showForm && (
         <PersonForm
-          control={control}
+          register={register}
           errors={errors}
           isValid={isValid}
           handlePhoneChange={handlePhoneChange}

@@ -6,7 +6,6 @@ interface Props {
   label: string;
   type: string;
   name: string;
-  value: string | number;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onBlur: (e: FocusEvent<HTMLInputElement>) => void;
   placeholder?: string;
@@ -16,17 +15,7 @@ interface Props {
 
 export const PersonFormField = forwardRef<HTMLInputElement, Props>(
   (
-    {
-      label,
-      type,
-      name,
-      value,
-      onChange,
-      onBlur,
-      placeholder,
-      maxLength,
-      error,
-    },
+    { label, type, name, onChange, onBlur, placeholder, maxLength, error },
     ref
   ) => {
     return (
@@ -36,7 +25,6 @@ export const PersonFormField = forwardRef<HTMLInputElement, Props>(
           id={name}
           type={type}
           name={name}
-          value={value}
           onChange={onChange}
           onBlur={onBlur}
           placeholder={placeholder}
