@@ -1,6 +1,8 @@
 import { useAppSelector } from "@/shared/lib/hooks/redux";
+import { Button } from "@/shared/ui/button/Button";
 
 import { PersonForm } from "./components/PersonForm";
+import styles from "./styles.module.scss";
 import { useAddPersonForm } from "../hooks/useAddPersonForm";
 
 export const AddPerson = () => {
@@ -22,10 +24,11 @@ export const AddPerson = () => {
   }
 
   return (
-    <div>
-      <button onClick={() => setShowForm(!showForm)}>
-        {showForm ? "Отменить" : "Добавить"}
-      </button>
+    <div className={styles.addPerson}>
+      <Button
+        onClick={() => setShowForm(!showForm)}
+        title={showForm ? "Отменить" : "Добавить строку"}
+      />
       {showForm && (
         <PersonForm
           formData={formData}

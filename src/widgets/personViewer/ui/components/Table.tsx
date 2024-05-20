@@ -21,6 +21,7 @@ import { TableBody } from "./TableBody";
 import { TableHead } from "./TableHead";
 import { TablePagination } from "./TablePagination";
 import { columns } from "../../model/columns";
+import styles from "../styles.module.scss";
 
 export const Table = () => {
   console.log("Table");
@@ -68,11 +69,13 @@ export const Table = () => {
   if (loading) return <Spinner />;
   if (error) return <div>Error: {error}</div>;
   return (
-    <section>
+    <section className={styles.table__wrapper}>
       {persons.length > 0 ? (
         <>
-          <GlobalFilter />
-          <table>
+          <div className={styles.table__filter}>
+            <GlobalFilter />
+          </div>
+          <table className={styles.table}>
             <TableHead table={table} />
             <TableBody table={table} onRowClick={handleRowClick} />
           </table>

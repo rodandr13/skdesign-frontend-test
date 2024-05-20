@@ -2,8 +2,10 @@ import React from "react";
 import { ChangeEvent, FormEvent } from "react";
 
 import { PersonFormData } from "@/shared/types/schema";
+import { Button } from "@/shared/ui/button/Button";
 
 import { PersonFormField } from "./PersonFormField";
+import styles from "../styles.module.scss";
 
 interface Props {
   formData: PersonFormData;
@@ -21,7 +23,7 @@ export const PersonForm = ({
   onSubmit,
 }: Props) => {
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className={styles.form}>
       <PersonFormField
         label="firstName"
         type="text"
@@ -59,7 +61,7 @@ export const PersonForm = ({
           ))}
         </div>
       )}
-      <button type="submit">Добавить в таблицу</button>
+      <Button type="submit" title="Добавить в таблицу" />
     </form>
   );
 };

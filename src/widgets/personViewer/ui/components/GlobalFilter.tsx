@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { useAppDispatch } from "@/shared/lib/hooks/redux";
+import { Button } from "@/shared/ui/button/Button";
 import { setGlobalFilter } from "@/widgets/personViewer/model/globalFilterSlice";
 
 export const GlobalFilter = () => {
@@ -12,13 +13,13 @@ export const GlobalFilter = () => {
   };
 
   return (
-    <div>
+    <>
       <input
         value={filterValue ?? ""}
         onChange={(e) => setFilterValue(String(e.target.value))}
         placeholder="Фильтр по таблице"
       />
-      <button onClick={handleCLickFilter}>Фильтровать</button>
-    </div>
+      <Button title="Фильтровать" onClick={handleCLickFilter} />
+    </>
   );
 };

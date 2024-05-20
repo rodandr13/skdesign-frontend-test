@@ -1,7 +1,7 @@
 "use client";
-
 import { fetchPersons } from "@/entities/person";
 import { useAppDispatch } from "@/shared/lib/hooks/redux";
+import { Button } from "@/shared/ui/button/Button";
 
 interface Props {
   dataRows: number;
@@ -15,5 +15,5 @@ export const LoadPersonsData = ({ dataRows, title }: Props) => {
     dispatch(fetchPersons(dataRows));
   };
 
-  return <button onClick={loadData}>{title}</button>;
+  return <Button onClick={loadData} title={title} />;
 };

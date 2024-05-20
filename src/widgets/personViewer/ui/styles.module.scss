@@ -1,0 +1,68 @@
+.personView {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  &__buttonsDataGroup {
+  }
+  &__buttonsGroup {
+    display: flex;
+    gap: 10px;
+  }
+  &__title {
+    margin: 10px 0;
+    padding: 0;
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-family: Arial, sans-serif;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__filter {
+    align-self: flex-end;
+    display: flex;
+    gap: 10px;
+  }
+
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #f4f4f4;
+    color: #333;
+    font-weight: bold;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  tr.active-row {
+    font-weight: bold;
+    color: #009879;
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  &__navigation {
+    display: flex;
+    gap: 7px;
+  }
+}
